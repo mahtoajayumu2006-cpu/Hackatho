@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f5f0">
+  <title>CivicAI — Smarter cities start here</title>
+  <meta name="description" content="Report neighborhood issues, track progress, and help build a better city with CivicAI.">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="CivicAI home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none"><path d="M16 3.5 27 9.8v12.4L16 28.5 5 22.2V9.8l11-6.3Z" stroke="currentColor" stroke-width="2"/><path d="M11 16.1l3.3 3.2 6.8-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <span class="brand-name">civic<span>ai</span></span>
+      </a>
+
+      <div class="workspace-label">WORKSPACE</div>
+      <nav class="main-nav" aria-label="Main navigation">
+        <button class="nav-link active" data-view="overview">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="14" y="3" width="7" height="5" rx="2"/><rect x="14" y="11" width="7" height="10" rx="2"/><rect x="3" y="14" width="8" height="7" rx="2"/></svg>
+          Overview <span class="nav-count">01</span>
+        </button>
+        <button class="nav-link" data-view="complaints">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3.8h7l5 5V20a1 1 0 0 1-1 1H7a2 2 0 0 1-2-2V5.8a2 2 0 0 1 2-2Z"/><path d="M14 4v5h5M9 14h6m-6 4h6"/></svg>
+          Complaints <span class="nav-count" id="navComplaintCount">06</span>
+        </button>
+        <button class="nav-link" data-view="analytics">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10m5 10V4m5 16v-7m5 7V7"/></svg>
+          Analytics
+        </button>
+        <button class="nav-link" data-view="map">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          City map
+        </button>
+      </nav>
+
+      <div class="workspace-label tools-label">YOUR SPACE</div>
+      <nav class="main-nav" aria-label="Personal navigation">
+        <button class="nav-link" data-view="my-reports">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>
+          My reports
+        </button>
+      </nav>
+
+      <div class="sidebar-spacer"></div>
+      <div class="sidebar-note">
+        <div class="sidebar-note-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Z"/><path d="m19 15 .9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9L19 15Z"/></svg></div>
+        <strong>Small acts, big impact.</strong>
+        <p>Your reports make our city a better place to live.</p>
+        <span class="impact-stat"><span class="impact-dot"></span> 2,481 issues resolved</span>
+      </div>
+      <button class="profile-card" id="profileButton">
+        <span class="avatar">AK</span>
+        <span class="profile-copy"><strong>Ananya Kapoor</strong><small>Community member</small></span>
+        <svg class="profile-more" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg>
+      </button>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button class="mobile-menu icon-button" id="menuButton" aria-label="Open navigation"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+        <div class="breadcrumb"><span>Workspace</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg><strong id="breadcrumbCurrent">Overview</strong></div>
+        <div class="topbar-right">
+          <span class="city-label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg> Bengaluru, IN <svg class="city-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5"/></svg></span>
+          <span class="topbar-divider"></span>
+          <button class="icon-button notification-button" aria-label="Notifications"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/></svg><span class="notification-dot"></span></button>
+          <span class="today-label">MON, OCT 06</span>
+        </div>
+      </header>
+
+      <div class="page-content">
+        <section class="view-panel active" id="view-overview">
+          <div class="welcome-row">
+            <div>
+              <div class="eyebrow"><span class="eyebrow-line"></span> YOUR NEIGHBORHOOD, YOUR VOICE</div>
+              <h1>Good morning, Ananya <span class="wave">✳</span></h1>
+              <p class="page-subtitle">Here’s what’s happening in your community today.</p>
+            </div>
+            <button class="primary-button" id="reportButton"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg> Report an issue <span class="button-shortcut">↗</span></button>
+          </div>
+
+          <section class="impact-banner" aria-label="Community impact">
+            <div class="impact-banner-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 14.5 9l5.5 1-4 4 .9 5.5L12 17l-4.9 2.5L8 14l-4-4 5.5-1L12 3.5Z"/></svg></div>
+            <div class="impact-banner-copy"><strong>Look at what we did together.</strong><span>Your community resolved <b>18 issues</b> this week. That’s a cleaner, safer neighborhood.</span></div>
+            <div class="banner-progress"><div><b>76%</b> resolution rate <span>↑ 8.2%</span></div><div class="progress-track"><span></span></div></div>
+            <div class="banner-sparkline" aria-hidden="true"><svg viewBox="0 0 90 40"><path d="M2 29 14 24 23 28 34 16 44 21 56 9 67 15 78 5 88 8" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 29 14 24 23 28 34 16 44 21 56 9 67 15 78 5 88 8V40H2Z" fill="currentColor" opacity=".08"/></svg></div>
+          </section>
+
+          <section class="stats-grid" aria-label="Complaint summary">
+            <article class="stat-card"><div class="stat-top"><span>Total complaints</span><span class="stat-icon stat-icon-blue"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3.8h7l5 5V20a1 1 0 0 1-1 1H7a2 2 0 0 1-2-2V5.8a2 2 0 0 1 2-2Z"/><path d="M14 4v5h5M9 14h6m-6 4h4"/></svg></span></div><div class="stat-value-row"><strong id="totalCount">128</strong><span class="stat-trend">↗ 12.5%</span></div><div class="stat-foot">vs. last month</div><div class="mini-bars" aria-hidden="true"><i style="height:36%"></i><i style="height:53%"></i><i style="height:40%"></i><i style="height:69%"></i><i style="height:50%"></i><i style="height:78%"></i><i style="height:62%"></i><i style="height:93%"></i><i style="height:72%"></i><i style="height:100%"></i></div></article>
+            <article class="stat-card"><div class="stat-top"><span>Needs attention</span><span class="stat-icon stat-icon-amber"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3 2"/></svg></span></div><div class="stat-value-row"><strong id="pendingCount">42</strong><span class="stat-trend neutral">● 8 high priority</span></div><div class="stat-foot">Across your neighborhood</div><div class="category-bars"><span style="width:69%;background:#ed9c65"></span><span style="width:48%;background:#e9bf62"></span><span style="width:32%;background:#83b49b"></span></div></article>
+            <article class="stat-card"><div class="stat-top"><span>Resolved this month</span><span class="stat-icon stat-icon-green"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg></span></div><div class="stat-value-row"><strong id="resolvedCount">55</strong><span class="stat-trend">↗ 8.2%</span></div><div class="stat-foot">Great work, Bengaluru! <span class="tiny-spark">⌁</span></div><div class="resolved-meter"><span style="width:76%"></span></div></article>
+            <article class="stat-card"><div class="stat-top"><span>Average response</span><span class="stat-icon stat-icon-lilac"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 16 9 11l3.5 3.5L20 7"/><path d="M15 7h5v5"/></svg></span></div><div class="stat-value-row"><strong>2.4<span class="stat-unit"> days</span></strong><span class="stat-trend">↘ 0.6 days</span></div><div class="stat-foot">Faster than last month</div><div class="response-line" aria-hidden="true"><svg viewBox="0 0 200 30"><path d="m2 6 22 7 22-2 22 8 22-4 22 7 22-6 22 2 22-10 22 4" fill="none" stroke="#a596cb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></article>
+          </section>
+
+          <section class="middle-grid">
+            <article class="panel category-panel">
+              <div class="panel-heading"><div><span class="section-kicker">THE BIG PICTURE</span><h2>Issues by category</h2></div><button class="subtle-select" id="categoryPeriod">This month <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5"/></svg></button></div>
+              <div class="category-content">
+                <div class="donut-wrap"><div class="donut-chart"><div class="donut-hole"><strong id="donutTotal">128</strong><span>total issues</span></div></div></div>
+                <div class="category-legend">
+                  <div class="legend-row"><span class="legend-color" style="background:#68877a"></span><span class="legend-name">Road &amp; potholes</span><strong id="roadCount">38</strong><small>30%</small></div>
+                  <div class="legend-row"><span class="legend-color" style="background:#c78469"></span><span class="legend-name">Waste &amp; garbage</span><strong id="wasteCount">32</strong><small>25%</small></div>
+                  <div class="legend-row"><span class="legend-color" style="background:#e8be6a"></span><span class="legend-name">Streetlights</span><strong id="lightCount">24</strong><small>19%</small></div>
+                  <div class="legend-row"><span class="legend-color" style="background:#97a9ba"></span><span class="legend-name">Water &amp; drainage</span><strong id="waterCount">19</strong><small>15%</small></div>
+                  <div class="legend-row"><span class="legend-color" style="background:#c1b5a5"></span><span class="legend-name">Other</span><strong id="otherCount">15</strong><small>11%</small></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="panel neighborhood-panel">
+              <div class="panel-heading"><div><span class="section-kicker">RIGHT AROUND YOU</span><h2>Neighborhood pulse</h2></div><button class="text-link" data-goto="map">View map <span>↗</span></button></div>
+              <div class="neighborhood-map" aria-label="Illustrated complaint map of Bengaluru neighborhoods">
+                <svg class="map-art" viewBox="0 0 480 190" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                  <rect width="480" height="190" fill="#e9ede3"/>
+                  <path d="M0 42 57 18l48 15 32-21 52 15 33-12 53 24 47-13 58 21 52-17 48 22v138H0Z" fill="#e3eadf"/>
+                  <g fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round"><path d="M-5 155 68 120l64 13 66-44 66 11 59-49 83 15 78-39"/><path d="m31-8 30 46 4 48 39 28 7 77"/><path d="m168-5-7 49 39 45-17 44 31 65"/><path d="m314-5 19 49-10 54 37 38 2 60"/><path d="m432-2-16 50 20 46-24 48 8 53"/></g>
+                  <g fill="none" stroke="#d3d9cc" stroke-width="2"><path d="m0 76 87 2 49 37 64-4 46 33 58-5 51 33 125 0"/><path d="m102 0 6 57 40 30-4 34 32 32-8 37"/><path d="m250 0-11 48 19 33-11 35 31 44-9 30"/><path d="m383 0 3 43-29 33 9 36-29 36"/></g>
+                  <path d="M387 12c11 20 14 39 10 55-4 16-19 26-23 41s4 31 20 42" fill="none" stroke="#a9c5c0" stroke-width="13" stroke-linecap="round" opacity=".7"/>
+                  <g><circle cx="122" cy="114" r="12" fill="#c98165" opacity=".2"/><circle cx="122" cy="114" r="5" fill="#b86950"/><circle cx="222" cy="79" r="12" fill="#e3b760" opacity=".25"/><circle cx="222" cy="79" r="5" fill="#cb9e49"/><circle cx="315" cy="125" r="12" fill="#c98165" opacity=".2"/><circle cx="315" cy="125" r="5" fill="#b86950"/><circle cx="179" cy="151" r="9" fill="#82a18d" opacity=".25"/><circle cx="179" cy="151" r="4" fill="#68877a"/><circle cx="359" cy="62" r="9" fill="#82a18d" opacity=".25"/><circle cx="359" cy="62" r="4" fill="#68877a"/><circle cx="67" cy="88" r="9" fill="#e3b760" opacity=".25"/><circle cx="67" cy="88" r="4" fill="#cb9e49"/></g>
+                  <g font-family="Arial,sans-serif" font-size="9" font-weight="600" fill="#748076"><text x="82" y="105">Malleshwaram</text><text x="198" y="64">Indiranagar</text><text x="288" y="148">Koramangala</text><text x="338" y="43">Ulsoor</text></g>
+                </svg>
+                <span class="map-live-tag"><span></span> LIVE ISSUES</span>
+                <span class="map-zoom"><button aria-label="Zoom in">+</button><button aria-label="Zoom out">−</button></span>
+              </div>
+              <div class="neighborhood-list">
+                <div class="neighborhood-row"><span class="neighborhood-rank">01</span><span class="neighborhood-name">Indiranagar</span><span class="neighborhood-issues">18 issues</span><span class="neighborhood-dot dot-attention"></span></div>
+                <div class="neighborhood-row"><span class="neighborhood-rank">02</span><span class="neighborhood-name">Koramangala</span><span class="neighborhood-issues">14 issues</span><span class="neighborhood-dot dot-resolving"></span></div>
+                <div class="neighborhood-row"><span class="neighborhood-rank">03</span><span class="neighborhood-name">Malleshwaram</span><span class="neighborhood-issues">9 issues</span><span class="neighborhood-dot dot-good"></span></div>
+              </div>
+            </article>
+          </section>
+
+          <section class="panel complaints-panel" id="complaintsTable">
+            <div class="panel-heading complaints-heading">
+              <div><span class="section-kicker">KEEPING THINGS MOVING</span><h2>Recent complaints <span class="heading-count" id="recentCount">06</span></h2></div>
+              <div class="table-actions"><label class="search-box"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></svg><input type="search" id="searchInput" placeholder="Search issues..." aria-label="Search complaints"></label><button class="filter-button" id="filterButton"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M7 12h10m-7 6h4"/></svg><span id="filterLabel">All issues</span><svg class="filter-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5"/></svg></button><button class="table-view-all" data-goto="complaints">View all <span>↗</span></button></div>
+            </div>
+            <div class="table-scroll"><table class="complaints-table"><thead><tr><th>ISSUE</th><th>LOCATION</th><th>REPORTED</th><th>PRIORITY</th><th>STATUS</th><th></th></tr></thead><tbody id="complaintRows"></tbody></table></div>
+            <div class="table-empty" id="emptyState" hidden>No complaints match your search.</div>
+            <div class="table-footer"><span>Showing <strong id="showingCount">6</strong> of <strong id="totalComplaintsFooter">128</strong> complaints</span><button class="footer-link" data-goto="complaints">See all complaints <span>→</span></button></div>
+          </section>
+          <footer class="page-footer"><span>Made for the city we call home.</span><span>© 2025 CivicAI <i></i> Built with care for Bengaluru</span></footer>
+        </section>
+
+        <section class="view-panel alternate-view" id="view-complaints">
+          <div class="welcome-row"><div><div class="eyebrow"><span class="eyebrow-line"></span> COMMUNITY REPORTS</div><h1>Every issue, one place.</h1><p class="page-subtitle">Track reports and see how your community is making progress.</p></div><button class="primary-button" data-report><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg> Report an issue <span class="button-shortcut">↗</span></button></div>
+          <div class="panel all-complaints-panel"><div class="panel-heading"><div><span class="section-kicker">BENGALURU COMMUNITY</span><h2>All complaints</h2></div><label class="search-box"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></svg><input type="search" data-all-search placeholder="Search complaints..." aria-label="Search all complaints"></label></div><div class="table-scroll"><table class="complaints-table"><thead><tr><th>ISSUE</th><th>LOCATION</th><th>REPORTED</th><th>PRIORITY</th><th>STATUS</th><th></th></tr></thead><tbody id="allComplaintRows"></tbody></table></div><div class="table-empty" id="allEmpty" hidden>No complaints match your search.</div><div class="table-footer"><span>Showing <strong id="allShowing">0</strong> complaints</span><span>Updated just now</span></div></div>
+          <footer class="page-footer"><span>Made for the city we call home.</span><span>© 2025 CivicAI <i></i> Built with care for Bengaluru</span></footer>
+        </section>
+
+        <section class="view-panel alternate-view" id="view-analytics">
+          <div class="welcome-row"><div><div class="eyebrow"><span class="eyebrow-line"></span> DATA FOR A BETTER CITY</div><h1>Patterns that move us.</h1><p class="page-subtitle">An at-a-glance look at what your community needs.</p></div></div>
+          <div class="stats-grid analytics-stats"><article class="stat-card"><div class="stat-top"><span>Total complaints</span><span class="stat-icon stat-icon-blue">▤</span></div><div class="stat-value-row"><strong id="analyticsTotal">128</strong><span class="stat-trend">↗ 12.5%</span></div><div class="stat-foot">All reported issues</div></article><article class="stat-card"><div class="stat-top"><span>Needs attention</span><span class="stat-icon stat-icon-amber">◷</span></div><div class="stat-value-row"><strong id="analyticsPending">42</strong><span class="stat-trend neutral">● In progress</span></div><div class="stat-foot">Pending and being addressed</div></article><article class="stat-card"><div class="stat-top"><span>Resolved</span><span class="stat-icon stat-icon-green">✓</span></div><div class="stat-value-row"><strong id="analyticsResolved">55</strong><span class="stat-trend">↗ 8.2%</span></div><div class="stat-foot">Community impact this month</div></article><article class="stat-card"><div class="stat-top"><span>Resolution rate</span><span class="stat-icon stat-icon-lilac">↗</span></div><div class="stat-value-row"><strong>76<span class="stat-unit">%</span></strong></div><div class="stat-foot">↑ 8.2% since last month</div></article></div>
+          <div class="middle-grid analytics-grid"><article class="panel category-panel"><div class="panel-heading"><div><span class="section-kicker">WHAT NEEDS ATTENTION</span><h2>Issues by category</h2></div></div><div class="category-content analytics-chart-content"><div class="donut-wrap"><div class="donut-chart"><div class="donut-hole"><strong id="analyticsDonutTotal">128</strong><span>total issues</span></div></div></div><div class="category-legend"><div class="legend-row"><span class="legend-color" style="background:#68877a"></span><span class="legend-name">Road &amp; potholes</span><strong>38</strong><small>30%</small></div><div class="legend-row"><span class="legend-color" style="background:#c78469"></span><span class="legend-name">Waste &amp; garbage</span><strong>32</strong><small>25%</small></div><div class="legend-row"><span class="legend-color" style="background:#e8be6a"></span><span class="legend-name">Streetlights</span><strong>24</strong><small>19%</small></div><div class="legend-row"><span class="legend-color" style="background:#97a9ba"></span><span class="legend-name">Water &amp; drainage</span><strong>19</strong><small>15%</small></div><div class="legend-row"><span class="legend-color" style="background:#c1b5a5"></span><span class="legend-name">Other</span><strong>15</strong><small>11%</small></div></div></div></article><article class="panel breakdown-panel"><div class="panel-heading"><div><span class="section-kicker">WHERE TO FOCUS</span><h2>Area-wise reports</h2></div></div><div class="area-breakdown"><div><span>Indiranagar</span><strong>18 <small>issues</small></strong><div class="area-track"><i style="width:90%"></i></div></div><div><span>Koramangala</span><strong>14 <small>issues</small></strong><div class="area-track"><i style="width:70%"></i></div></div><div><span>Jayanagar</span><strong>12 <small>issues</small></strong><div class="area-track"><i style="width:60%"></i></div></div><div><span>Malleshwaram</span><strong>9 <small>issues</small></strong><div class="area-track"><i style="width:45%"></i></div></div><div><span>HSR Layout</span><strong>7 <small>issues</small></strong><div class="area-track"><i style="width:35%"></i></div></div></div></article></div><footer class="page-footer"><span>Made for the city we call home.</span><span>© 2025 CivicAI <i></i> Built with care for Bengaluru</span></footer>
+        </section>
+        <section class="view-panel alternate-view map-page-view" id="view-map"><div class="welcome-row"><div><div class="eyebrow"><span class="eyebrow-line"></span> BENGALURU, IN</div><h1>A closer look at your city.</h1><p class="page-subtitle">Explore reported issues across your neighborhoods.</p></div><button class="primary-button" data-report><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg> Report an issue <span class="button-shortcut">↗</span></button></div><div class="panel map-large"><div class="map-toolbar"><span><span class="live-pulse"></span> COMMUNITY ISSUE MAP</span><span class="map-legend"><i class="priority-high"></i> High priority <i class="priority-medium"></i> Medium <i class="priority-low"></i> Low</span></div><div class="map-canvas"><svg viewBox="0 0 1200 640" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="1200" height="640" fill="#e9ede3"/><path d="M0 100 165 33l115 41 120-55 137 56 154-34 131 67 135-42 148 68 95-29v535H0Z" fill="#e3eadf"/><g fill="none" stroke="#fff" stroke-width="22" stroke-linecap="round"><path d="m-20 535 180-146 154 51 171-177 162 48 155-191 195 62 193-163"/><path d="m95-30 68 142 9 125 97 84 24 158 74 139"/><path d="m402-30-11 143 92 121-43 138 72 125-32 173"/><path d="m702-30 47 153-26 131 92 95 5 144 42 148"/><path d="m1018-30-42 163 62 126-58 127 17 140"/></g><g fill="none" stroke="#d3d9cc" stroke-width="4"><path d="m0 238 215 10 126 98 171-7 115 87 158-11 124 93 291 1"/><path d="m251-10 16 173 105 74-10 84 89 87-20 232"/><path d="m633-20-30 159 52 105-30 106 81 136-24 152"/><path d="m964-20 12 147-77 94 24 101-76 103"/></g><path d="M965 22c27 52 35 103 18 145-20 50-58 66-69 107s9 83 50 120" fill="none" stroke="#a9c5c0" stroke-width="31" stroke-linecap="round" opacity=".7"/><g font-family="Arial,sans-serif" font-size="22" font-weight="600" fill="#748076"><text x="250" y="351">Malleshwaram</text><text x="539" y="196">Indiranagar</text><text x="692" y="433">Koramangala</text><text x="913" y="152">Ulsoor</text><text x="286" y="537">Jayanagar</text><text x="788" y="564">HSR Layout</text></g><g><circle cx="581" cy="250" r="29" fill="#c98165" opacity=".2"/><circle cx="581" cy="250" r="12" fill="#b86950"/><circle cx="740" cy="427" r="29" fill="#c98165" opacity=".2"/><circle cx="740" cy="427" r="12" fill="#b86950"/><circle cx="467" cy="399" r="22" fill="#e3b760" opacity=".25"/><circle cx="467" cy="399" r="9" fill="#cb9e49"/><circle cx="698" cy="251" r="22" fill="#e3b760" opacity=".25"/><circle cx="698" cy="251" r="9" fill="#cb9e49"/><circle cx="390" cy="494" r="22" fill="#82a18d" opacity=".25"/><circle cx="390" cy="494" r="9" fill="#68877a"/><circle cx="855" cy="203" r="22" fill="#82a18d" opacity=".25"/><circle cx="855" cy="203" r="9" fill="#68877a"/><circle cx="898" cy="379" r="22" fill="#e3b760" opacity=".25"/><circle cx="898" cy="379" r="9" fill="#cb9e49"/><circle cx="303" cy="256" r="22" fill="#e3b760" opacity=".25"/><circle cx="303" cy="256" r="9" fill="#cb9e49"/></g></svg><span class="large-map-chip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg> Your city is 3.2 km around you</span></div><div class="map-bottom"><span>Showing <strong>42 active</strong> community reports</span><span>Map illustrations are for demo purposes</span></div></div><footer class="page-footer"><span>Made for the city we call home.</span><span>© 2025 CivicAI <i></i> Built with care for Bengaluru</span></footer></section>
+        <section class="view-panel alternate-view" id="view-my-reports"><div class="welcome-row"><div><div class="eyebrow"><span class="eyebrow-line"></span> YOUR COMMUNITY CONTRIBUTIONS</div><h1>Good change starts with you.</h1><p class="page-subtitle">Follow the progress of the issues you’ve reported.</p></div><button class="primary-button" data-report><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg> Report an issue <span class="button-shortcut">↗</span></button></div><div class="panel all-complaints-panel"><div class="panel-heading"><div><span class="section-kicker">YOUR ACTIVITY</span><h2>My reports</h2></div></div><div class="my-reports-list" id="myReportsList"></div></div><div class="personal-note"><span>✳</span><div><strong>You’re helping make Bengaluru better.</strong><p>Every report helps your neighborhood get the care and attention it deserves.</p></div></div><footer class="page-footer"><span>Made for the city we call home.</span><span>© 2025 CivicAI <i></i> Built with care for Bengaluru</span></footer></section>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="reportModal" aria-hidden="true">
+    <section class="report-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header"><div><span class="section-kicker">MAKE YOUR VOICE COUNT</span><h2 id="modalTitle">Report an issue</h2><p>Tell us what’s happening. We’ll get it to the right people.</p></div><button class="modal-close" id="closeModal" aria-label="Close report form"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+      <form id="reportForm">
+        <label class="field-label" for="issueTitle">What’s the issue? <span>*</span></label>
+        <input class="text-input" id="issueTitle" name="issueTitle" maxlength="80" placeholder="e.g. Large pothole on 12th Main Road" required>
+        <label class="field-label" for="issueDescription">A few more details <span class="optional-label">OPTIONAL</span></label>
+        <textarea class="text-input description-input" id="issueDescription" name="issueDescription" maxlength="300" placeholder="Tell us a little more about what you noticed..." rows="3"></textarea>
+        <div class="field-label photo-label">Add a photo <span class="optional-label">OPTIONAL</span></div>
+        <label class="upload-zone" id="uploadZone" for="photoInput"><input type="file" id="photoInput" accept="image/*"><span class="upload-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4m-5 5 5-5 5 5"/><path d="M4 15v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"/></svg></span><span class="upload-copy"><strong>Choose a photo <span>or drag it here</span></strong><small>JPG, PNG or WEBP · up to 10 MB</small></span><img id="photoPreview" alt="Selected photo preview" hidden></label>
+        <div class="form-row">
+          <div class="form-half"><label class="field-label" for="issueLocation">Location <span>*</span></label><div class="location-field"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg><input id="issueLocation" name="issueLocation" placeholder="Neighborhood or address" required><button type="button" id="locateButton" title="Use my current location" aria-label="Use my current location"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3"/></svg></button></div></div>
+          <div class="form-half"><label class="field-label" for="issueCategory">Issue category</label><select class="text-input" id="issueCategory" name="issueCategory"><option value="auto">✳ &nbsp; Detect automatically</option><option value="Road Damage">Road &amp; potholes</option><option value="Garbage">Waste &amp; garbage</option><option value="Streetlight">Streetlights</option><option value="Water Leakage">Water &amp; drainage</option><option value="Other">Other</option></select></div>
+        </div>
+        <div class="ai-note"><span class="ai-note-icon">✳</span><span><strong>AI-assisted routing</strong> <small>We’ll identify the issue and route it to the right department.</small></span><span class="ai-demo-badge">DEMO</span></div>
+        <div class="classification-result" id="classificationResult" hidden></div>
+        <div class="modal-actions"><span><span class="required-mark">*</span> Required fields</span><button class="primary-button submit-button" type="submit">Submit report <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-7-7 7 7-7 7"/></svg></button></div>
+      </form>
+    </section>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"><span class="toast-check">✓</span><span id="toastMessage"></span></div>
+</body>
+</html>
